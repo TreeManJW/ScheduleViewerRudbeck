@@ -27,19 +27,28 @@ block8 = sidebar.checkbox("Block 8", value=block8)
 ment1 = sidebar.checkbox("Ment 1", value=ment1)
 ment2 = sidebar.checkbox("Ment 2", value=ment2)
 
-column_headers = ["Mån", "Tis", "Ons", "Tors", "Fre"]
+columnHeaders = ["Mån", "Tis", "Ons", "Tors", "Fre"]
 columns = st.columns(col)
 for i in range(col):
-    columns[i].write(f"<div style='text-align: center;'>{column_headers[i]}</div>", unsafe_allow_html=True)
+    columns[i].write(f"<div style='text-align: center;'>{columnHeaders[i]}</div>", unsafe_allow_html=True)
 
-box_width = 130
-box_heights = [
+boxWidth = 130
+boxHeights = [
     [200, 200, 200, 200, 200],
     [100, 100, 100, 100, 100],
     [100, 50, 100, 100, 90],
     [100, 50, 100, 100, 90],
     [100, 100, 100, 100, 100],
     [100, 200, 100, 100, 100]
+]
+
+boxNames = [
+    ["1", "5", "2", "7", "6"],
+    ["2", "6", "1", "8", "5"],
+    ["3", "M1", "4", "3", "4"],
+    ["4", "M2", "3", "4", "3"],
+    ["5", "7", "", "1", "8"],
+    ["6", "8", "", "2", "7"]
 ]
 
 showBlocks = [
@@ -80,16 +89,17 @@ for j in range(row):
     block_row = st.columns(col)
     for i in range(col):
         if showBlocks[j][i]:
-            box_html = f"""
-            <div style="width: {box_width}px; height: {box_heights[j][i]}px; border: 1px solid black; background-color: lightblue; padding: 10px; text-align: center;">
+            boxHtml = f"""
+            <div style="width: {boxWidth}px; height: {boxHeights[j][i]}px; border: 1px solid black; background-color: lightblue; padding: 10px; text-align: center;">
+            {boxNames[j][i]}
             </div>
             """
         else:
-            box_html = f"""
-            <div style="width: {box_width}px; height: {box_heights[j][i]}px; border: 1px solid black; padding: 10px; text-align: center;">
+            boxHtml = f"""
+            <div style="width: {boxWidth}px; height: {boxHeights[j][i]}px; border: 1px solid black; padding: 10px; text-align: center;">
             </div>
             """
-        block_row[i].markdown(box_html, unsafe_allow_html=True)
+        block_row[i].markdown(boxHtml, unsafe_allow_html=True)
 
 
 
